@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <in>wstat.cpp</in>
+      <in>wstat.h</in>
+      <in>wstat_main.cpp</in>
+    </df>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <platform>2</platform>
+      </toolsSet>
+      <compile>
+        <compiledirpicklist>
+          <compiledirpicklistitem>.</compiledirpicklistitem>
+          <compiledirpicklistitem>${AUTO_FOLDER}</compiledirpicklistitem>
+        </compiledirpicklist>
+        <compiledir>${AUTO_FOLDER}</compiledir>
+        <compilecommandpicklist>
+          <compilecommandpicklistitem>${MAKE} ${ITEM_NAME}.o</compilecommandpicklistitem>
+          <compilecommandpicklistitem>${AUTO_COMPILE}</compilecommandpicklistitem>
+        </compilecommandpicklist>
+        <compilecommand>${AUTO_COMPILE}</compilecommand>
+      </compile>
+      <dbx_gdbdebugger version="1">
+        <gdb_pathmaps>
+        </gdb_pathmaps>
+        <gdb_interceptlist>
+          <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
+        </gdb_interceptlist>
+        <gdb_options>
+          <DebugOptions>
+          </DebugOptions>
+        </gdb_options>
+        <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
+      </dbx_gdbdebugger>
+      <dbxdebugger version="1">
+        <pathmaps>
+        </pathmaps>
+        <interceptlist>
+          <interceptoptions all="false" unhandled="true" unexpected="true"/>
+        </interceptlist>
+        <signals>
+        </signals>
+        <options>
+          <DebugOptions>
+          </DebugOptions>
+        </options>
+        <buildfirst buildfirst_overriden="false" buildfirst_old="false"/>
+      </dbxdebugger>
+      <dbxrtc version="1">
+        <options>
+          <RtcOptions>
+            <option name="rtc_access_enable" value="off"/>
+            <option name="rtc_leaks_memuse_enable" value="off"/>
+            <option name="rtc_error_log_file_name" value="/dev/null"/>
+          </RtcOptions>
+        </options>
+        <loadobjs>
+          <lo name="/lan/cva/debugger_user4/garryya/rd/challenges/wstat/wstat"
+              skip="false"/>
+          <lo name="/lib64/ld-linux-x86-64.so.2" skip="false"/>
+          <lo name="/tmp/dbx.vdso.31732.256245.4.so" skip="false"/>
+          <lo name="/grid/common/pkgs/gcc/v4.8.3/lib64/libstdc++.so.6" skip="false"/>
+          <lo name="/lib64/libm.so.6" skip="false"/>
+          <lo name="/grid/common/pkgs/gcc/v4.8.3/lib64/libgcc_s.so.1" skip="false"/>
+          <lo name="/lib64/libc.so.6" skip="false"/>
+          <lo name="/lib64/libdl.so.2" skip="false"/>
+          <lo name="/tmp/dbx.vdso.31463.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.1074.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.31946.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.21982.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.21477.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.21201.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.26701.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.7027.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.6513.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.6192.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.2939.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.30562.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.27671.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.27470.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.23319.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.23052.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.22926.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.22699.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.21204.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.18600.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.17994.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.17521.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.17316.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.16826.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.15948.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.14327.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.14233.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.13826.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.13437.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.12798.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.12501.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.11413.256245.4.so" skip="false"/>
+        </loadobjs>
+      </dbxrtc>
+      <gizmo_options version="3">
+        <configurationname>GizmoSunStudioStandard</configurationname>
+      </gizmo_options>
+      <nativedebugger version="1">
+        <engine>dbx</engine>
+      </nativedebugger>
+      <runprofile version="9">
+        <runcommandpicklist>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" </runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" homework_medium_wordlist.txt</runcommandpicklistitem>
+          <runcommandpicklistitem>./wstat homeworkwordlist.txt</runcommandpicklistitem>
+          <runcommandpicklistitem>./wstat homework_medium_wordlist.txt</runcommandpicklistitem>
+        </runcommandpicklist>
+        <runcommand>./wstat homework_medium_wordlist.txt</runcommand>
+        <arguments>homework_medium_wordlist.txt</arguments>
+        <rundir>.</rundir>
+        <buildfirst>false</buildfirst>
+        <terminal-type>0</terminal-type>
+        <remove-instrumentation>0</remove-instrumentation>
+        <environment>
+        </environment>
+      </runprofile>
+    </conf>
+  </confs>
+</configurationDescriptor>
