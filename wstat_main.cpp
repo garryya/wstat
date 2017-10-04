@@ -15,18 +15,14 @@
 #include <iterator>
 #include <set>
 #include <algorithm>
-#include <vector>
 #include <iomanip>
 
 #include "wstat.h"
 
-typedef std::pair<const char*, int> T;
-
-bool sort_by_freq(const T& f1, const T& f2)
+bool sort_by_freq(const WStat::TFreqPair& f1, const WStat::TFreqPair& f2)
 {
       return f1.second >= f2.second;
 }
-
 
 int main_console(int argc, char *argv[]) 
 {
@@ -57,14 +53,14 @@ int main_console(int argc, char *argv[])
     
     if( ! freqs.empty() )
     {
-        std::vector<T> fs;
+        WStat::TFreqRefs freqRefs;
         for(WStat::TFreqs::const_iterator i=freqs.begin(); i != freqs.end(); i++)
             if( ! i->first.empty() )
-            fs.push_back(T(i->first.c_str(), i->second)); 
+            freqRefs.push_back(WStat::TFreqPair(i->first.c_str(), i->second)); 
 
-        std::sort(fs.begin(), fs.end(), sort_by_freq);
+        std::sort(freqRefs.begin(), freqRefs.end(), sort_by_freq);
     
-        for( std::vector<T>::const_iterator i=fs.begin(); i != fs.end(); i++)
+        for( WStat::TFreqRefs::const_iterator i=freqRefs.begin(); i != freqRefs.end(); i++)
             std::cout << std::setw(32) << std::left << (*i).first 
                         << std::setw(8) << std::right << (*i).second << std::endl; 
     }   

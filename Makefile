@@ -17,7 +17,7 @@ default: build
 build: $(EXE)
 
 clean:
-	rm -f *.o $(WORKDIR)/$(EXE) *~
+	rm -f *.o $(EXE) *~
 
 all: clean build
 

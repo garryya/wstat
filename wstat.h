@@ -11,13 +11,14 @@
  * Created on October 3, 2017, 5:45 PM
  */
 
-#ifndef WCOUNT_H
-#define WCOUNT_H
+#ifndef WSTAT_H
+#define WSTAT_H
 
 #include <string>
 #include <map>
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 
 class WStat
@@ -25,6 +26,8 @@ class WStat
 public:
     
     typedef std::map<std::string, int> TFreqs;
+    typedef std::pair<const char*, int> TFreqPair;
+    typedef std::vector<TFreqPair> TFreqRefs;
     
 private:
     
@@ -54,7 +57,5 @@ protected:
 };
 
 
-
-
-#endif /* WCOUNT_H */
+#endif /* WSTAT_H */
 
