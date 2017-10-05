@@ -9,7 +9,7 @@ CXX_DEBUG   := -g
 
 
 $(EXE) : wstat_main.cpp wstat.cpp
-	$(GCC) $(CFLAGS) $(CXX_DEBUG) $(LDFLAGS) wstat_main.cpp wstat.cpp -o $(EXE)
+	$(GCC) $(CFLAGS) $(CXX_DEBUG) $(LDFLAGS) wstat_main.cpp wstat.cpp -o $(EXE) -lpthread
 	# $(BUILD_CMD)
 
 default: build

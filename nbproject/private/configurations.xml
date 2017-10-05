@@ -64,14 +64,54 @@
           <lo name="/lan/cva/debugger_user4/garryya/rd/challenges/wstat/wstat"
               skip="false"/>
           <lo name="/lib64/ld-linux-x86-64.so.2" skip="false"/>
-          <lo name="/tmp/dbx.vdso.31732.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.5250.256245.4.so" skip="false"/>
+          <lo name="/lib64/libpthread.so.0" skip="false"/>
           <lo name="/grid/common/pkgs/gcc/v4.8.3/lib64/libstdc++.so.6" skip="false"/>
           <lo name="/lib64/libm.so.6" skip="false"/>
           <lo name="/grid/common/pkgs/gcc/v4.8.3/lib64/libgcc_s.so.1" skip="false"/>
           <lo name="/lib64/libc.so.6" skip="false"/>
           <lo name="/lib64/libdl.so.2" skip="false"/>
-          <lo name="/tmp/dbx.vdso.31463.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.1510.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.1258.256245.4.so" skip="false"/>
           <lo name="/tmp/dbx.vdso.1074.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.912.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.23671.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.23520.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.23357.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.23132.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.23045.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.20942.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.19308.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.18859.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.15252.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.15119.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.29410.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.28546.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.27362.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.24569.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.22449.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.22334.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.21392.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.13932.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.13691.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.13414.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.13123.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.12805.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.11388.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.11142.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.8426.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.8295.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.3751.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.3068.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.32639.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.31750.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.30780.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.28959.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.28688.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.1940.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.1713.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.31732.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.31463.256245.4.so" skip="false"/>
           <lo name="/tmp/dbx.vdso.31946.256245.4.so" skip="false"/>
           <lo name="/tmp/dbx.vdso.21982.256245.4.so" skip="false"/>
           <lo name="/tmp/dbx.vdso.21477.256245.4.so" skip="false"/>

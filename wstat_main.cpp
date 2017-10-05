@@ -1,14 +1,13 @@
 /*
- * File:   main.cpp
  * Author: garryya
- *
- * Created on October 3, 2017, 5:41 PM
+ * Created on October 4, 2017, 5:41 PM
  */
 
 
-//TODO: sort: memory overhead maybe
-//TODO: frequencies
-//TODO: use iterator
+//TODO: sort: possible memory corruption 
+//TODO: sort: memory overhead
+//TODO: sync locks ?
+//TODO: log
 
 
 #include <iostream>
@@ -32,7 +31,7 @@ int main_console(int argc, char *argv[])
         return 1;
     }
     
-    std::cout << "* initializing ..." << std::endl;
+    //std::cout << "* initializing ..." << std::endl;
     const char * szFilename = argv[1];
     static WStat wc;
     if(! wc.init(szFilename))
@@ -41,14 +40,14 @@ int main_console(int argc, char *argv[])
         return 1;
     }
 
-    std::cout << "* processing " << szFilename << " ..." << std::endl;
-    if(! wc.process())
+    //std::cout << "* processing " << szFilename << " ..." << std::endl;
+    if(! wc.process(true))
     {
         std::cout << "Processing failed:" << wc.get_error() << std::endl;
         return 1;
     }
     
-    std::cout << "* finished:" << std::endl;
+    //std::cout << "* finished:" << std::endl;
     const WStat::TFreqs& freqs = wc.get_frequences();
     
     if( ! freqs.empty() )
@@ -56,7 +55,7 @@ int main_console(int argc, char *argv[])
         WStat::TFreqRefs freqRefs;
         for(WStat::TFreqs::const_iterator i=freqs.begin(); i != freqs.end(); i++)
             if( ! i->first.empty() )
-            freqRefs.push_back(WStat::TFreqPair(i->first.c_str(), i->second)); 
+                freqRefs.push_back(WStat::TFreqPair(i->first.c_str(), i->second)); 
 
         std::sort(freqRefs.begin(), freqRefs.end(), sort_by_freq);
     
