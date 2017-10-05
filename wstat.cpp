@@ -67,9 +67,9 @@ void WStat::count_words(const std::string& text, WStat& ws)
     for(const char* s = text.c_str(); *s; s++)
     {
         char c = *s;
-        if( ! isspace(c) )
+        if(! isspace(c))
             word += c;
-        else if( word.empty() )
+        else if(word.empty())
             continue;
         else
         {
@@ -77,7 +77,7 @@ void WStat::count_words(const std::string& text, WStat& ws)
             word.clear();
         }
     }
-    if( ! word.empty() )
+    if(! word.empty())
         ws.update(word);
 }
 
@@ -89,26 +89,15 @@ protected:
     size_t m_nThreads;
     WStat * m_pws;
     
-    typedef std::vector<std::thread> TThreads;
+    typedef std::shared_ptr<std::thread> ThreadPtr;
+    typedef std::vector<ThreadPtr> TThreads;
     TThreads m_threads;
     
-    typedef std::deque<std::string> TQueue;
+    typedef std::deque<WStat::TStringPtr> TQueue;
     typedef std::shared_ptr<TQueue> QueuePtr; 
     QueuePtr m_ptrq;
 
 public:
-
-    static void t_count(QueuePtr ptrq, WStat* p_ws)
-    {   
-        while(true)
-        {
-            if( ptrq->empty() )
-                return;
-            const std::string& text = ptrq->front();
-            ptrq->pop_front();
-            p_ws->count_words(text, *p_ws);
-        }
-    }
 
     TTPool(size_t nThreads, WStat* pws) : m_nThreads(nThreads), m_pws(pws)
     {
@@ -122,15 +111,30 @@ public:
     void start()
     {
         for(size_t i=0; i<this->m_nThreads; i++)
-            this->m_threads.push_back(std::thread(TTPool::t_count, this->m_ptrq, this->m_pws));
-        for(TThreads::iterator i=this->m_threads.begin(); i != this->m_threads.end(); i++)
-            i->join();
+        {
+            ThreadPtr ptrt(new std::thread(TTPool::t_count, this->m_ptrq, this->m_pws));
+            this->m_threads.push_back(ptrt);
+        }
+        // for(TThreads::iterator i=this->m_threads.begin(); i != this->m_threads.end(); i++)
+        //    i->join();
     }
     
     // TODO sync!!!
-    void enqueue(const std::string& chunk)
+    void enqueue(WStat::TStringPtr ptrChunk)
     {
-        this->m_ptrq->push_back(chunk);
+        this->m_ptrq->push_back(ptrChunk);
+    }
+
+    static void t_count(QueuePtr ptrq, WStat* p_ws)
+    {   
+        while(true)
+        {
+            if(ptrq->empty())
+                return;
+            WStat::TStringPtr text = ptrq->front();
+            ptrq->pop_front();
+            p_ws->count_words(*text, *p_ws);
+        }
     }
 };
 
@@ -140,12 +144,12 @@ bool WStat::process(bool bParallel)
     try
     {
         this->reset();
-        if( ! this->m_bInited )
+        if(! this->m_bInited)
         {
             this->set_error("Not initialized.");
             return false;
         }
-        if( ! bParallel )
+        if(! bParallel)
         {
             //TODO - read all into memory, not good..
             std::string line, text;
@@ -155,28 +159,27 @@ bool WStat::process(bool bParallel)
         }
         else
         {
-            TTPool tp(WStat::m_nThreads, this);
+            // TTPool tp(WStat::m_nThreads, this);
             TChunks chunks;
             while(! this->m_file.eof())
             {
                 char c;
-                std::string chunk;
+                WStat::TStringPtr ptrChunk(new std::string());
                 // read exactly N chars (chunk size) 
-                while(chunk.size()<WStat::m_nChunkSize && this->m_file.get(c))
-                    chunk += c;
-                if( chunk.empty() )
+                while(ptrChunk->size()<WStat::m_nChunkSize && this->m_file.get(c))
+                    *ptrChunk += c;
+                if(ptrChunk->empty())
                     continue;
                 // then align to word boundary
-                if( ! std::isspace(*chunk.rbegin()) ) 
+                if(! std::isspace(*ptrChunk->rbegin())) 
                     while(this->m_file.get(c) && ! std::isspace(c))
-                        chunk += c;
-                chunks.push_back(chunk);
-                //tp.enqueue(chunk);
-                chunk.clear();
+                        *ptrChunk += c;
+                chunks.push_back(ptrChunk);
+                //tp.enqueue(ptrChunk);
             }
 
             for(TChunks::const_iterator i=chunks.begin(); i != chunks.end(); ++i)
-                count_words(*i, *this);
+                count_words(**i, *this);
             
             //tp.start();
         }
@@ -190,3 +193,8 @@ bool WStat::process(bool bParallel)
 
 }
 
+
+bool WStat::sort_by_freq(const TFreqs::value_type* f1, const TFreqs::value_type* f2)
+{
+    return f1->second > f2->second;
+}

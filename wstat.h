@@ -14,6 +14,7 @@
 #ifndef WSTAT_H
 #define WSTAT_H
 
+#include <memory>
 #include <string>
 #include <map>
 #include <iostream>
@@ -25,10 +26,12 @@ class WStat
 {
 public:
     
+    typedef std::shared_ptr<std::string> TStringPtr;
+
     typedef std::map<std::string, int> TFreqs;
-    typedef std::pair<std::string, int> TFreqPair;
-    typedef std::vector<TFreqPair> TFreqRefs;
-    typedef std::vector<std::string> TChunks;
+    typedef std::vector<const TFreqs::value_type*> TFreqRefs;
+    
+    typedef std::vector<TStringPtr> TChunks;
         
 protected:
     
@@ -57,11 +60,13 @@ public:
     
     static void count_words(const std::string& text, WStat& ws);
     
+    static bool sort_by_freq(const WStat::TFreqs::value_type* f1, const WStat::TFreqs::value_type* f2);
 protected:
     void reset();
     void set_error(const char * szError);
     
 };
+
 
 
 #endif /* WSTAT_H */

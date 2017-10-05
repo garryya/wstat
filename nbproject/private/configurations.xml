@@ -64,13 +64,16 @@
           <lo name="/lan/cva/debugger_user4/garryya/rd/challenges/wstat/wstat"
               skip="false"/>
           <lo name="/lib64/ld-linux-x86-64.so.2" skip="false"/>
-          <lo name="/tmp/dbx.vdso.5250.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.13892.256245.4.so" skip="false"/>
           <lo name="/lib64/libpthread.so.0" skip="false"/>
           <lo name="/grid/common/pkgs/gcc/v4.8.3/lib64/libstdc++.so.6" skip="false"/>
           <lo name="/lib64/libm.so.6" skip="false"/>
           <lo name="/grid/common/pkgs/gcc/v4.8.3/lib64/libgcc_s.so.1" skip="false"/>
           <lo name="/lib64/libc.so.6" skip="false"/>
           <lo name="/lib64/libdl.so.2" skip="false"/>
+          <lo name="/tmp/dbx.vdso.20696.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.19772.256245.4.so" skip="false"/>
+          <lo name="/tmp/dbx.vdso.5250.256245.4.so" skip="false"/>
           <lo name="/tmp/dbx.vdso.1510.256245.4.so" skip="false"/>
           <lo name="/tmp/dbx.vdso.1258.256245.4.so" skip="false"/>
           <lo name="/tmp/dbx.vdso.1074.256245.4.so" skip="false"/>

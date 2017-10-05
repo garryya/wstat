@@ -18,10 +18,6 @@
 
 #include "wstat.h"
 
-bool sort_by_freq(const WStat::TFreqPair& f1, const WStat::TFreqPair& f2)
-{
-      return f1.second >= f2.second;
-}
 
 int main_console(int argc, char *argv[]) 
 {
@@ -50,18 +46,17 @@ int main_console(int argc, char *argv[])
     //std::cout << "* finished:" << std::endl;
     const WStat::TFreqs& freqs = wc.get_frequences();
     
-    if( ! freqs.empty() )
+    if(! freqs.empty())
     {
         WStat::TFreqRefs freqRefs;
         for(WStat::TFreqs::const_iterator i=freqs.begin(); i != freqs.end(); i++)
-            if( ! i->first.empty() )
-                freqRefs.push_back(WStat::TFreqPair(i->first.c_str(), i->second)); 
-
-        std::sort(freqRefs.begin(), freqRefs.end(), sort_by_freq);
+            if(! i->first.empty())
+                freqRefs.push_back(&(*i)); 
+        std::sort(freqRefs.begin(), freqRefs.end(), WStat::sort_by_freq);
     
-        for( WStat::TFreqRefs::const_iterator i=freqRefs.begin(); i != freqRefs.end(); i++)
-            std::cout << std::setw(32) << std::left << (*i).first 
-                        << std::setw(8) << std::right << (*i).second << std::endl; 
+        for(WStat::TFreqRefs::const_iterator i=freqRefs.begin(); i != freqRefs.end(); i++)
+            std::cout << std::setw(32) << std::left << (*i)->first 
+                        << std::setw(8) << std::right << (*i)->second << std::endl; 
     }   
     return 0;
 }
