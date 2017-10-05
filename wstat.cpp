@@ -54,6 +54,7 @@ void WStat::set_error(const char * szError)
 void WStat::update(const std::string& _word)
 {
     std::string word = _word;
+    std::lock_guard<std::mutex> lck(this->m_mtxFreqs);
     std::transform(word.begin(), word.end(), word.begin(), ::tolower);
     TFreqs::iterator i = this->m_freqs.find(word);
     if( i == this->m_freqs.end() )
@@ -97,6 +98,8 @@ protected:
     typedef std::shared_ptr<TQueue> QueuePtr; 
     QueuePtr m_ptrq;
 
+    static std::mutex m_mtxQ;
+    
 public:
 
     TTPool(size_t nThreads, WStat* pws) : m_nThreads(nThreads), m_pws(pws)
@@ -115,13 +118,14 @@ public:
             ThreadPtr ptrt(new std::thread(TTPool::t_count, this->m_ptrq, this->m_pws));
             this->m_threads.push_back(ptrt);
         }
-        // for(TThreads::iterator i=this->m_threads.begin(); i != this->m_threads.end(); i++)
-        //    i->join();
+        for(TThreads::iterator i=this->m_threads.begin(); i != this->m_threads.end(); i++)
+            (*i)->join();
     }
     
     // TODO sync!!!
     void enqueue(WStat::TStringPtr ptrChunk)
     {
+        std::lock_guard<std::mutex> lck(this->m_mtxQ);  
         this->m_ptrq->push_back(ptrChunk);
     }
 
@@ -129,15 +133,20 @@ public:
     {   
         while(true)
         {
-            if(ptrq->empty())
-                return;
-            WStat::TStringPtr text = ptrq->front();
-            ptrq->pop_front();
+            WStat::TStringPtr text;
+            {
+                std::lock_guard<std::mutex> lck(TTPool::m_mtxQ);  
+                if(ptrq->empty())
+                    return;
+                text = ptrq->front();
+                ptrq->pop_front();
+            }
             p_ws->count_words(*text, *p_ws);
         }
     }
 };
 
+std::mutex TTPool::m_mtxQ;
 
 bool WStat::process(bool bParallel)
 {
@@ -159,7 +168,7 @@ bool WStat::process(bool bParallel)
         }
         else
         {
-            // TTPool tp(WStat::m_nThreads, this);
+            TTPool tp(WStat::m_nThreads, this);
             TChunks chunks;
             while(! this->m_file.eof())
             {
@@ -175,13 +184,15 @@ bool WStat::process(bool bParallel)
                     while(this->m_file.get(c) && ! std::isspace(c))
                         *ptrChunk += c;
                 chunks.push_back(ptrChunk);
-                //tp.enqueue(ptrChunk);
+                tp.enqueue(ptrChunk);
             }
 
+            /*/
             for(TChunks::const_iterator i=chunks.begin(); i != chunks.end(); ++i)
                 count_words(**i, *this);
-            
-            //tp.start();
+            /*/
+            tp.start();
+            /**/
         }
         return true;
     }
@@ -190,7 +201,6 @@ bool WStat::process(bool bParallel)
         this->set_error(x.what());        
         return false;
     }
-
 }
 
 

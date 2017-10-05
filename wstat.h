@@ -20,6 +20,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <mutex>
 
 
 class WStat
@@ -43,6 +44,8 @@ protected:
     
     const size_t m_nThreads;
     const size_t m_nChunkSize;
+    
+    std::mutex m_mtxFreqs;
     
 public:
     WStat(size_t nThreads = 8, size_t nChunkSize = 256);
