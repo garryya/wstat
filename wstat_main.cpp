@@ -9,6 +9,7 @@
 //TODO: sync locks ?
 //TODO: log
 
+#include "stdafx.h"
 
 #include <iostream>
 #include <iterator>
@@ -59,10 +60,14 @@ int main_console(int argc, char *argv[])
                         << std::setw(8) << std::right << (*i)->second << std::endl; 
     }   
     return 0;
+
+	
 }
 
 
 int main(int argc, char *argv[]) 
 {
-   return main_console(argc, argv);
+   int ret = main_console(argc, argv);
+   //std::getchar();
+   return ret;
 }

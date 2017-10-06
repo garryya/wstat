@@ -2,11 +2,15 @@
  * 
  */
 
+#include "stdafx.h"
+
 #include <iostream>
 #include <iterator>
 #include <algorithm>
 #include <thread>
 #include <deque>
+
+#include <ctype.h>
 
 #include "wstat.h"
 
@@ -28,7 +32,8 @@ bool WStat::init(const char* szFilename)
     try
     {
         this->m_file.open(szFilename);
-        this->m_bInited = ! this->m_file.fail(); 
+        this->m_bInited = ! this->m_file.fail();
+		
     }
     catch(std::ios_base::failure& x)
     {
@@ -180,8 +185,8 @@ bool WStat::process(bool bParallel)
                 if(ptrChunk->empty())
                     continue;
                 // then align to word boundary
-                if(! std::isspace(*ptrChunk->rbegin())) 
-                    while(this->m_file.get(c) && ! std::isspace(c))
+                if(! isspace(*ptrChunk->rbegin())) 
+                    while(this->m_file.get(c) && ! isspace(c))
                         *ptrChunk += c;
                 chunks.push_back(ptrChunk);
                 tp.enqueue(ptrChunk);
@@ -208,3 +213,4 @@ bool WStat::sort_by_freq(const TFreqs::value_type* f1, const TFreqs::value_type*
 {
     return f1->second > f2->second;
 }
+
