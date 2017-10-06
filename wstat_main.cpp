@@ -19,7 +19,6 @@
 
 #include "wstat.h"
 
-
 int main_console(int argc, char *argv[]) 
 {
     if(argc <= 1)
