@@ -84,6 +84,7 @@ private slots:
     void openRecentFile();
     void about();
     void documentWasModified();
+    void find();
 
 private:
     enum { MaxRecentFiles = 5 };

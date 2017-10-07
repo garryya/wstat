@@ -226,17 +226,25 @@ void MainWindow::createActions()
 
     setRecentFilesVisible(MainWindow::hasRecentFiles());
 
-//    QAction *closeAct = fileMenu->addAction(tr("&Close"), this, &QWidget::close);
-//    closeAct->setShortcut(tr("Ctrl+W"));
-//    closeAct->setStatusTip(tr("Close this window"));
+    QAction *closeAct = fileMenu->addAction(tr("&Close"), this, &QWidget::close);
+    closeAct->setShortcut(tr("Ctrl+W"));
+    closeAct->setStatusTip(tr("Close this window"));
 
     const QIcon exitIcon = QIcon::fromTheme("application-exit");
     QAction *exitAct = fileMenu->addAction(exitIcon, tr("E&xit"), qApp, &QApplication::closeAllWindows);
     exitAct->setShortcuts(QKeySequence::Quit);
     exitAct->setStatusTip(tr("Exit the application"));
 
-//    QMenu *editMenu = menuBar()->addMenu(tr("&Edit"));
+    QMenu *editMenu = menuBar()->addMenu(tr("&Edit"));
 //    QToolBar *editToolBar = addToolBar(tr("Edit"));
+
+    const QIcon findIcon = QIcon::fromTheme("edit-find", QIcon(":/images/find.png"));
+    QAction *findAct = new QAction(findIcon, tr("&Find"), this);
+    findAct->setShortcuts(QKeySequence::Find);
+    findAct->setStatusTip(tr("Find a word "));
+    connect(findAct, &QAction::triggered, this, &MainWindow::find);
+    editMenu->addAction(findAct);
+
 
 //#ifndef QT_NO_CLIPBOARD
 //    const QIcon cutIcon = QIcon::fromTheme("edit-cut", QIcon(":/images/cut.png"));
@@ -476,11 +484,7 @@ void MainWindow::loadFile(const QString &fileName)
         return;
     }
 
-    /*/
-    QTextStream in(&file);
-    textEdit->setPlainText(in.readAll());
-    /*/
-    static WStat wc;
+    WStat wc;
     if(! wc.init(fileName.toStdString().c_str()))
     {
         QMessageBox::warning(this, tr("SDI"),
@@ -519,3 +523,17 @@ void MainWindow::loadFile(const QString &fileName)
     statusBar()->showMessage(tr("Word statistics loaded"), 2000);
 }
 
+void MainWindow::find()
+{
+    bool ok;
+    QString text = QInputDialog::getText(
+                     this,
+                     tr("String"),
+                     tr("Enter a city name:"),
+                     QLineEdit::Normal,
+                     tr("Alings?s"),
+                     &ok );
+    if(ok)
+        textEdit->find(text);
+
+}

@@ -31,7 +31,7 @@ bool WStat::init(const char* szFilename)
     try
     {
         this->m_file.open(szFilename);
-        this->m_bInited = ! this->m_file.fail();
+        this->m_bInited = true; //= ! this->m_file.fail();
 		
     }
     catch(std::ios_base::failure& x)
